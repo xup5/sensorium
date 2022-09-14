@@ -370,30 +370,32 @@ def multicore_model(
 
     Returns: An initialized model which consists of model.core and model.readout
     """
-    core_config_default = {
-        'hidden_channels':32,
-        'input_kern':13,
-        'hidden_kern':3,
-        'layers':3,
-        'gamma_input':15.5,
-        'skip':0,
-        'final_nonlinearity':True,
-        'bias':False,
-        'momentum':0.9,
-        'pad_input':False,
-        'batch_norm':True,
-        'hidden_dilation':1,
-        'laplace_padding':None,
-        'input_regularizer':"LaplaceL2norm",
-        'stack':None,
-        'depth_separable':False,
-        'linear':False,
-        'attention_conv':False,
-        'hidden_padding':None,
-        'use_avg_reg':False,
-        'stride':1,
-        'output_shape': (28, 56)
-    }
+    # core_config_default = {
+    #     'hidden_channels':32,
+    #     'input_kern':13,
+    #     'hidden_kern':3,
+    #     'layers':3,
+    #     'gamma_input':15.5,
+    #     'skip':0,
+    #     'final_nonlinearity':True,
+    #     'bias':False,
+    #     'momentum':0.9,
+    #     'pad_input':True,
+    #     'batch_norm':True,
+    #     'hidden_dilation':1,
+    #     'laplace_padding':None,
+    #     'input_regularizer':"LaplaceL2norm",
+    #     'stack':None,
+    #     'depth_separable':False,
+    #     'linear':False,
+    #     'attention_conv':False,
+    #     'hidden_padding':None,
+    #     'use_avg_reg':False,
+    #     'stride':1,
+    #     'input_shape': None,
+    #     'output_channels': (28, 56)
+    #     'output_shape': (28, 56)
+    # }
 
     readout_config_default = {
         'init_mu_range':0.2,
@@ -433,8 +435,8 @@ def multicore_model(
     readout_config['grid_mean_predictor'] = grid_mean_predictor
 
     for core_config in core_configs:
-        for k in core_config_default:
-            core_config.setdefault(k, core_config_default[k])
+        # for k in core_config_default:
+        #     core_config.setdefault(k, core_config_default[k])
         core_config.setdefault('input_channels', core_input_channels)
 
     core = MultiCore(
